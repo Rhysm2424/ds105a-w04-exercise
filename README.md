@@ -5,7 +5,7 @@
     - I am studying BSc Economics in my first year at LSE
     - I have chosen data science as a way be able to learn how to code as well as learn what data science is  all about 
 
-![This is a photo of me eating a pie!!!](/files/ds105a-w04-exercise/figures/my-image.jpeg)
+![This is a photo of me eating a pie!!!](figures/my-image.jpeg)
 
 ## What Will my Repository Contain?
 
