@@ -139,23 +139,23 @@ def main():
 
     results.append(check_result)
 
-    # CHECK 3: There was an 'About Me' section and it was a H2 header
+    # CHECK 3: There was an 'About Me' section
     if has_readme:
-        if "## about me" in readme_content.lower():
+        if "about me" in readme_content.lower():
             check_result = {
-                "Check": "About Me section is a H2 header",
+                "Check": "About Me section is present",
                 "Status": True,
-                "Notes": "You have an 'About Me' section in the README.md file and it is correctly formatted as a H2 header.",
+                "Notes": "You have an 'About Me' section in the README.md file. The marker will check if it is a heading!",
             }
         else:
             check_result = {
-                "Check": "About Me section is a H2 header",
+                "Check": "About Me section is present",
                 "Status": False,
-                "Notes": "You don't have an 'About Me' section in the README.md file or it is not correctly formatted as a H2 header.",
+                "Notes": "You don't have an 'About Me' section in the README.md file or it is not correctly formatted as a heading",
             }
     else:
         check_result = {
-            "Check": "About Me section is a H2 header",
+            "Check": "About Me section is present",
             "Status": False,
             "Notes": "README.md file not found.",
         }
