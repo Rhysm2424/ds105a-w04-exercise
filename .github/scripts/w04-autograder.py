@@ -422,7 +422,7 @@ def main():
             for file in markdown_files + jupyter_notebooks:
                 if (
                     f"]({file})" in readme_content
-                    or f"]({file.split('.')[0]})" in readme_content
+                    or f"]({file.split('./')[1]})" in readme_content
                 ):
                     links_to_other_files.append(file)
 
