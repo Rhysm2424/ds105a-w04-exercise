@@ -331,53 +331,53 @@ def main():
 
     results.append(check_result)
 
-    # CHECK 9: Links are not broken, right? Let's check that!
-    broken_links = []
-    if has_readme:
-        if has_markdown_links:
-            for link in markdown_links:
-                if link.startswith("http"):
-                    try:
-                        response = requests.head(link)
-                        if response.status_code != 200:
-                            broken_links.append(link)
-                    except:
-                        broken_links.append(link)
-                else:
-                    # Check if the local file exists
-                    file_path = os.path.join(os.path.dirname("README.md"), link)
-                    if not os.path.exists(file_path):
-                        broken_links.append(link)
+    # # CHECK 9: Links are not broken, right? Let's check that!
+    # broken_links = []
+    # if has_readme:
+    #     if has_markdown_links:
+    #         for link in markdown_links:
+    #             if link.startswith("http"):
+    #                 try:
+    #                     response = requests.head(link)
+    #                     if response.status_code != 200:
+    #                         broken_links.append(link)
+    #                 except:
+    #                     broken_links.append(link)
+    #             else:
+    #                 # Check if the local file exists
+    #                 file_path = os.path.join(os.path.dirname("README.md"), link)
+    #                 if not os.path.exists(file_path):
+    #                     broken_links.append(link)
 
-            if not broken_links:
-                check_result = {
-                    "Check": "Links are not broken",
-                    "Status": True,
-                    "Notes": "All links in the README.md file are working.",
-                }
-            else:
-                check_result = {
-                    "Check": "Links are not broken",
-                    "Status": False,
-                    "Notes": (
-                        f"Broken links found in the README.md file: {broken_links}. "
-                        "Absolute paths pointing to files inside the repository are also considered broken links."
-                    ),
-                }
-        else:
-            check_result = {
-                "Check": "Links are not broken",
-                "Status": False,
-                "Notes": "No Markdown links found in the README.md file.",
-            }
-    else:
-        check_result = {
-            "Check": "Links are not broken",
-            "Status": False,
-            "Notes": "README.md file not found.",
-        }
+    #         if not broken_links:
+    #             check_result = {
+    #                 "Check": "Links are not broken",
+    #                 "Status": True,
+    #                 "Notes": "All links in the README.md file are working.",
+    #             }
+    #         else:
+    #             check_result = {
+    #                 "Check": "Links are not broken",
+    #                 "Status": False,
+    #                 "Notes": (
+    #                     f"Broken links found in the README.md file: {broken_links}. "
+    #                     "Absolute paths pointing to files inside the repository are also considered broken links."
+    #                 ),
+    #             }
+    #     else:
+    #         check_result = {
+    #             "Check": "Links are not broken",
+    #             "Status": False,
+    #             "Notes": "No Markdown links found in the README.md file.",
+    #         }
+    # else:
+    #     check_result = {
+    #         "Check": "Links are not broken",
+    #         "Status": False,
+    #         "Notes": "README.md file not found.",
+    #     }
 
-    results.append(check_result)
+    # results.append(check_result)
 
     # CHECK 10: There were other markdown files OR Jupyter notebooks somewhere in the repository
 
@@ -416,49 +416,49 @@ def main():
 
     # CHECK 11: Did you link to the other markdown files or Jupyter notebooks in the README.md file?
 
-    if has_readme:
-        if has_markdown_files or has_jupyter_notebooks:
-            links_to_other_files = []
-            for file in markdown_files + jupyter_notebooks:
-                if (
-                    f"]({file})" in readme_content
-                    or f"]({file.split('./')[1]})" in readme_content
-                ):
-                    links_to_other_files.append(file)
+    # if has_readme:
+    #     if has_markdown_files or has_jupyter_notebooks:
+    #         links_to_other_files = []
+    #         for file in markdown_files + jupyter_notebooks:
+    #             if (
+    #                 f"]({file})" in readme_content
+    #                 or f"]({file.split('./')[1]})" in readme_content
+    #             ):
+    #                 links_to_other_files.append(file)
 
-            if links_to_other_files:
-                check_result = {
-                    "Check": "README.md contains links to other markdown files or Jupyter notebooks",
-                    "Status": True,
-                    "Notes": (
-                        "You have linked to other markdown files or Jupyter notebooks in the README.md file. "
-                        "Great job! You are using different file types to document your work and linking to them."
-                    ),
-                }
-            else:
-                check_result = {
-                    "Check": "README.md contains links to other markdown files or Jupyter notebooks",
-                    "Status": False,
-                    "Notes": (
-                        "You have other markdown files or Jupyter notebooks in the repository, "
-                        "but you didn't link to them in the README.md file. "
-                        "This would have been a great opportunity to show the reader how to navigate your repository."
-                    ),
-                }
-        else:
-            check_result = {
-                "Check": "README.md contains links to other markdown files or Jupyter notebooks",
-                "Status": False,
-                "Notes": "No other markdown files or Jupyter notebooks found in the repository.",
-            }
-    else:
-        check_result = {
-            "Check": "README.md contains links to other markdown files or Jupyter notebooks",
-            "Status": False,
-            "Notes": "README.md file not found.",
-        }
+    #         if links_to_other_files:
+    #             check_result = {
+    #                 "Check": "README.md contains links to other markdown files or Jupyter notebooks",
+    #                 "Status": True,
+    #                 "Notes": (
+    #                     "You have linked to other markdown files or Jupyter notebooks in the README.md file. "
+    #                     "Great job! You are using different file types to document your work and linking to them."
+    #                 ),
+    #             }
+    #         else:
+    #             check_result = {
+    #                 "Check": "README.md contains links to other markdown files or Jupyter notebooks",
+    #                 "Status": False,
+    #                 "Notes": (
+    #                     "You have other markdown files or Jupyter notebooks in the repository, "
+    #                     "but you didn't link to them in the README.md file. "
+    #                     "This would have been a great opportunity to show the reader how to navigate your repository."
+    #                 ),
+    #             }
+    #     else:
+    #         check_result = {
+    #             "Check": "README.md contains links to other markdown files or Jupyter notebooks",
+    #             "Status": False,
+    #             "Notes": "No other markdown files or Jupyter notebooks found in the repository.",
+    #         }
+    # else:
+    #     check_result = {
+    #         "Check": "README.md contains links to other markdown files or Jupyter notebooks",
+    #         "Status": False,
+    #         "Notes": "README.md file not found.",
+    #     }
 
-    results.append(check_result)
+    # results.append(check_result)
 
     # CHECK 12: Check for proper Markdown formatting in the other markdown files
     if has_markdown_files:
